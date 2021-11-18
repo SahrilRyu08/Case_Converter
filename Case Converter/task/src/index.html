@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Case Converter</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+    <div>
+        <h1 class="title">Case Converter</h1>
+        <div>
+            <textarea id="text-area"></textarea>
+            <div class="container">
+                <button id="upper-case">Upper Case</button>
+                <button id="lower-case">Lower Case</button>
+                <button id="proper-case">Proper Case</button>
+                <button id="sentence-case">Sentence Cases</button>
+                <button id="save-text-file">Save Text File</button>
+            </div>
+            <script>
+                document.getElementById("upper-case").addEventListener("click", function upper(){
+                    let text = document.getElementById("text-area").value;
+                    return document.querySelector("#text-area").value = text.toUpperCase();
+                });
+                document.getElementById("lower-case").addEventListener("click", function lower(){
+                    let text = document.getElementById("text-area").value;
+                    return document.querySelector("#text-area").value = text.toLowerCase();
+                });
+                document.getElementById("proper-case").addEventListener("click", function proper(){
+                    let text = document.getElementById("text-area").value;
+                    let splitStr = text.toLowerCase().split(' ');
+                    for (let i = 0; i < splitStr.length; i++) {
+                        // You do not need to check if i is larger than splitStr length, as your for does that for you
+                        // Assign it back to the array
+                        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+                    }
+                    // Directly return the joined string
+                    return document.querySelector("#text-area").value = splitStr.join(' ');
+                });
+
+                document.getElementById("sentence-case").addEventListener("click", function sentence(){
+                    let text = document.getElementById("text-area").value;
+                    let splitStr = text.toLowerCase().split('. ');
+                    let b = '.';
+                    for (let i = 0; i < splitStr.length; i++) {
+                        // You do not need to check if i is larger than splitStr length, as your for does that for you
+                        // Assign it back to the array
+                        if (i !== splitStr.length - 1) {
+                            splitStr[i] = splitStr[i].concat(b);
+                        }
+                        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1, splitStr[i].length);
+                    }
+                    // Directly return the joined string
+                    return document.querySelector("#text-area").value = splitStr.join(' ');
+                });
+                document.getElementById("save-text-file")
+                    .addEventListener("click",function download(filename, text) {
+                        text = document.getElementById("text-area").value;
+                        filename = "text.txt";
+                        let element = document.createElement('a');
+                        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+                        element.setAttribute('download', filename);
+
+                        element.style.display = 'none';
+                        document.body.appendChild(element);
+
+                        element.click();
+
+                        document.body.removeChild(element);
+                    });
+
+
+
+                // Start file download.
+
+            </script>
+        </div>
+    </div>
+</body>
+</html>

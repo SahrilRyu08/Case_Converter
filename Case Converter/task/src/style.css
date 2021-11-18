@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.title {
+    margin: 20px;
+    font-size: 30px;
+}
+
+textarea {
+    border: 2px solid grey;
+    border-radius: 5px;
+    margin: 0 20px 0 20px;
+    height: 250px;
+    width: 500px;
+}
+
+.container {
+    margin: 0 20px;
+    flex-flow: column;
+}
+
+#upper-case, #lower-case, #proper-case, #sentence-case, #save-text-file{
+    margin: 5px 5px;
+    padding: 5px 5px;
+    background-color: coral;
+    font-size: 15px;
+    border: 2px none;
+    border-radius: 3px;
+}
